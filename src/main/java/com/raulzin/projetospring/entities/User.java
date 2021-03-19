@@ -2,12 +2,22 @@ package com.raulzin.projetospring.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;   //configuração JPA
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+
+@Entity
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	
+	//definir chave primaria
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)   //autoincremento 
 	private Long id;
 	private String name;
 	private String email;
