@@ -6,30 +6,30 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.raulzin.projetospring.entities.User;
-import com.raulzin.projetospring.repositories.UserRepository;
+import com.raulzin.projetospring.entities.Order;
+import com.raulzin.projetospring.repositories.OrderRepository;
 
 @Service // registrar classe como componente de serviço do Spring
 
-public class UserService {
+public class OrderService {
 
-	// camada de serviços (UserServices) tem dependência com a camada de repositório
-	// (UserRepository)
+	// camada de serviços (OrderServices) tem dependência com a camada de repositório
+	// (OrderRepository)
 
 	@Autowired
-	private UserRepository repository;
+	private OrderRepository repository;
 
 	// método para retornar todos usuários do banco de dados
-	public List<User> findAll() {
+	public List<Order> findAll() {
 
 		return repository.findAll();
  
 	}
 	
 	//método para retornar usuário por id
-	public User findById(Long id) {
+	public Order findById(Long id) {
 		
-		 Optional <User> obj = repository.findById (id);
+		 Optional <Order> obj = repository.findById (id);
 		 return obj.get();
 	}
 
