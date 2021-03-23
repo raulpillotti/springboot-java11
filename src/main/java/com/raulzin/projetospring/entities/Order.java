@@ -13,6 +13,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.raulzin.projetospring.enums.OrderStatus;
 
 	@Entity
 	
@@ -35,12 +36,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 	
 	
 	
-	
 	//usando anotação para biblioteca Jackson do postman não entrar em loop infinito
 	@JsonIgnore
-	
-	
-	
 	
 	 //dizendo para o JPA que Order tem uma associação muitos(Order) para um (Client)
 	@ManyToOne
@@ -48,17 +45,30 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 	private User client;
 	
 	
+	private Integer orderStatus;
 	
 	
 	public Order() {
 		
 	}
 
-	public Order(Long id, Instant moment, User client) {
-		super();
+	public Order(Long id, Instant moment, OrderStatus orderStatus , User client) {
+		 
 		this.id = id;
 		this.moment = moment;
 		this.client = client;
+		setOrderStatus(orderStatus);
+	}
+
+	public OrderStatus getOrderStatus() {
+		return OrderStatus.valueOf(orderStatus);
+	}
+
+	public void setOrderStatus(OrderStatus orderStatus) {
+		
+		if(orderStatus != null) {
+		this.orderStatus = orderStatus.getCode();
+		}
 	}
 
 	public Long getId() {
