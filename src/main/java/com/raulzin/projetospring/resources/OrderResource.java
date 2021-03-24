@@ -2,6 +2,8 @@ package com.raulzin.projetospring.resources;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,7 @@ import com.raulzin.projetospring.entities.Order;
 import com.raulzin.projetospring.services.OrderService;
 
 //**CONTROLADOR REST
-
+@Resource
 @RestController
 @RequestMapping(value = "/orders")
 

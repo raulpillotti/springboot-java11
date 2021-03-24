@@ -11,26 +11,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.raulzin.projetospring.entities.User;
-import com.raulzin.projetospring.services.UserService;
+import com.raulzin.projetospring.entities.Product;
+import com.raulzin.projetospring.services.ProductService;
 
 //**CONTROLADOR REST
 @Resource
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/products")
 
-public class UserResource {
+public class ProductResource {
 	
 	//dependência com a camada de serviço
 	
 	@Autowired
-	private UserService service;
+	private ProductService service;
 	
 	
 	@GetMapping
-	public ResponseEntity <List<User>> findAll(){
+	public ResponseEntity <List<Product>> findAll(){
 		
-		List <User> list = service.findAll();
+		List <Product> list = service.findAll();
 		
 		return ResponseEntity.ok().body(list);
 		
@@ -38,8 +38,8 @@ public class UserResource {
 	
 	//requisição para id
 	@GetMapping(value = "/{id}")
-	public ResponseEntity <User> findById( @PathVariable Long id){
-		User obj = service.findById(id);
+	public ResponseEntity <Product> findById( @PathVariable Long id){
+		Product obj = service.findById(id);
 		return ResponseEntity.ok(obj);
 	}
 

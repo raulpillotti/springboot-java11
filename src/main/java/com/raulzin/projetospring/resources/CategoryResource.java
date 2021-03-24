@@ -11,36 +11,32 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.raulzin.projetospring.entities.User;
-import com.raulzin.projetospring.services.UserService;
-
-//**CONTROLADOR REST
-@Resource
+import com.raulzin.projetospring.entities.Category;
+import com.raulzin.projetospring.services.CategoryService;
 @RestController
-@RequestMapping(value = "/users")
-
-public class UserResource {
-	
-	//dependência com a camada de serviço
+@Resource
+@RequestMapping("/categories")
+public class CategoryResource {
 	
 	@Autowired
-	private UserService service;
+	private CategoryService service;
 	
-	
+
 	@GetMapping
-	public ResponseEntity <List<User>> findAll(){
+	public ResponseEntity <List<Category>> findAll(){
 		
-		List <User> list = service.findAll();
+		List <Category> list = service.findAll();
 		
 		return ResponseEntity.ok().body(list);
 		
 	}
 	
-	//requisição para id
 	@GetMapping(value = "/{id}")
-	public ResponseEntity <User> findById( @PathVariable Long id){
-		User obj = service.findById(id);
+	public ResponseEntity <Category> findById( @PathVariable Long id){
+		Category obj = service.findById(id);
 		return ResponseEntity.ok(obj);
-	}
+	
+	
 
+}
 }
