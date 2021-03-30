@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.raulzin.projetospring.entities.Category;
 import com.raulzin.projetospring.entities.Order;
+import com.raulzin.projetospring.entities.OrderItem;
 import com.raulzin.projetospring.entities.Product;
 import com.raulzin.projetospring.entities.User;
 import com.raulzin.projetospring.enums.OrderStatus;
 import com.raulzin.projetospring.repositories.CategoryRepository;
+import com.raulzin.projetospring.repositories.OrderItemRepository;
 import com.raulzin.projetospring.repositories.OrderRepository;
 import com.raulzin.projetospring.repositories.ProductRepository;
 import com.raulzin.projetospring.repositories.UserRepository;
@@ -38,6 +40,9 @@ public class TestConfig implements CommandLineRunner {      //CommandLineRunner 
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -74,6 +79,30 @@ public class TestConfig implements CommandLineRunner {      //CommandLineRunner 
 		
 		//salvar produtos no db
 		 productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		 
+		 
+		//associações categoria-produto
+		 p1.getCategories().add(cat2);
+		 
+		 p2.getCategories().add(cat1);
+		 p2.getCategories().add(cat3);
+		 
+		 p3.getCategories().add(cat3);
+		 
+		 p4.getCategories().add(cat3);
+		 
+		 p5.getCategories().add(cat3);
+		 
+		 productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+		 
+		 
+		 OrderItem oi1 = new OrderItem(p1, o1, 2, p1.getPrice());
+		 OrderItem oi2 = new OrderItem(p3, o1, 1, p3.getPrice());
+		 OrderItem oi3 = new OrderItem(p3, o2, 2, p3.getPrice());
+		 OrderItem oi4 = new OrderItem(p5, o3, 2, p5.getPrice());
+		 
+		 orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+
 		
 	}
 	
